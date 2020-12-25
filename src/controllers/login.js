@@ -28,6 +28,9 @@ const Login = {
         res.setHeader('Set-Cookie', cookie)
 
         if (email !== user.email && password !== 'secret') return res.status(422).send({error: 'Invalid email/password'})
+
+        if (refid) return res.redirect(`https://sso-consumer.herokuapp.com/?ssoToken=${user.id}&refid=${refid}`)
+
         return res.send(user)
     }
 }

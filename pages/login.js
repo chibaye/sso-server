@@ -1,5 +1,5 @@
-import Router, {useRouter} from 'next/router'
 import React, {useState} from 'react'
+import Router, {useRouter} from 'next/router'
 
 const headers = {
     'Accept': 'application/json',
@@ -23,7 +23,7 @@ const Home = () => {
         })
 
         if (res.ok) {
-            query.refid === 'consumer' ? window.location.href = 'https://sso-consumer.herokuapp.com/?refid=consumer' : await Router.push('/')
+            await Router.push('/')
         } else {
             const data = await res.json()
             setError(data.error)
