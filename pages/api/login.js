@@ -9,7 +9,8 @@ handler
     .use(cors({
         origin: '*',
         credentials: true,
-        methods: ['GET', 'POST']
+        allowedHeaders: 'Origin, Content-Type, X-Auth-Token',
+        methods: ['GET', 'POST', 'PATCH', 'PUT', 'DELETE', 'OPTIONS']
     }))
     .post(Login.post)
 
