@@ -19,6 +19,7 @@ const Home = () => {
 
         const res = await fetch('/api/login', {
             headers, method: 'POST',
+            withCredential: true,
             body: JSON.stringify({email, password})
         })
 
