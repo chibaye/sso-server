@@ -15,19 +15,23 @@ const Home = () => {
     const handleSubmit = async e => {
         e.preventDefault()
 
-        if (query.refid) headers.refid = query.refid
+        try {
+            if (query.refid) headers.refid = query.refid
 
-        const res = await fetch('/api/login', {
-            headers, method: 'POST',
-            withCredential: true,
-            body: JSON.stringify({email, password})
-        })
+            const res = await fetch('/api/login', {
+                headers, method: 'POST',
+                withCredential: true,
+                body: JSON.stringify({email, password})
+            })
 
-        if (res.ok) {
-            await Router.push('/')
-        } else {
-            const data = await res.json()
-            setError(data.error)
+            if (res.ok) {
+                await Router.push('/')
+            } else {
+                const data = await res.json()
+                setError(data.error)
+            }
+        } catch (e) {
+            console.log({e})
         }
     }
 
