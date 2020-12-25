@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "cookie": "^0.4.1",
+    "cors": "^2.8.5",
     "next": "10.0.4",
     "next-connect": "^0.9.1",
     "react": "17.0.1",
