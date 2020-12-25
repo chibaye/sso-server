@@ -6,7 +6,11 @@ import Login from '@/controllers/login'
 const handler = nextConnect()
 
 handler
-    .use(cors())
+    .use(cors({
+        origin: '*',
+        credentials: true,
+        methods: ['GET', 'POST']
+    }))
     .post(Login.post)
 
 export default handler
