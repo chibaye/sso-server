@@ -25,6 +25,10 @@ const Home = () => {
             })
 
             if (res.ok) {
+                if (query.refid) {
+                    const user = await res.json()
+                    window.location.href = `https://sso-consumer.herokuapp.com/?ssoToken=${user.id}&refid=${query.refid}`
+                }
                 await Router.push('/')
             } else {
                 const data = await res.json()

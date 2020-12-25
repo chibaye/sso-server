@@ -9,32 +9,6 @@ const user = {
     email: 'test@user.com'
 }
 
-const sessionUser = {}
-const sessionApp = {}
-
-const originAppName = {
-    'https://sso-consumer.herokuapp.com': 'sso-consumer'
-}
-
-// these token are for the validation purpose
-const intrmTokenCache = {}
-
-const fillIntrmTokenCache = (origin, id, intrmToken) => {
-    intrmTokenCache[intrmToken] = [id, originAppName[origin]]
-}
-const storeApplicationInCache = (origin, id, intrmToken) => {
-    if (sessionApp[id] == null) {
-        sessionApp[id] = {
-            [originAppName[origin]]: true
-        }
-        fillIntrmTokenCache(origin, id, intrmToken)
-    } else {
-        sessionApp[id][originAppName[origin]] = true
-        fillIntrmTokenCache(origin, id, intrmToken)
-    }
-    console.log({...sessionApp}, {...sessionUser}, {intrmTokenCache})
-}
-
 const Login = {
     post(req, res) {
         const {refid} = req.headers
@@ -55,8 +29,8 @@ const Login = {
 
         if (email !== user.email && password !== 'secret') return res.status(422).send({error: 'Invalid email/password'})
 
-        storeApplicationInCache(refid, user, user.id)
-        if (refid) return res.redirect(`https://sso-consumer.herokuapp.com/?ssoToken=${user.id}&refid=${refid}`)
+
+        // if (refid) return res.redirect(`https://sso-consumer.herokuapp.com/?ssoToken=${user.id}&refid=${refid}`)
 
         return res.send(user)
     }
