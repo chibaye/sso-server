@@ -16,6 +16,9 @@ export const getServerSideProps = async ctx => {
 }
 
 const Home = () =>
-    <h1>Secure page for the SSO Server app</h1>
+    <div>
+        <h1>Secure page for the SSO Server app</h1>
+        <a href='https://sso-consumer.herokuapp.com'>Go to the Consumer app</a>
+    </div>
 
 export default Home
